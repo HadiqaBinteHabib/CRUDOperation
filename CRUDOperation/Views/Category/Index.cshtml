@@ -1,0 +1,31 @@
+﻿@using CRUDOperation.Models
+@model List<Category>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-outline-primary" href="/Category/Create">
+    Create new
+</a>
+<table class="table table-bordered table-hover table-striped" >
+    <thead>
+        <tr>
+            <th>CategoryId</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
