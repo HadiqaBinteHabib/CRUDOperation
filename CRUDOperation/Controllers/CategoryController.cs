@@ -25,14 +25,17 @@ namespace CRUDOperation.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]  // Optional, but explicit
         public IActionResult Create(Category category)
         {
+            if (!string.IsNullOrEmpty(category.Name))
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));  // Better than redirecting back to Create
+            }
 
-            _context.Categories.Add(category);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
-
+            return View(category);  // Return view with errors if invalid
         }
     }
 }
